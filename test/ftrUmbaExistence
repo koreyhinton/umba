@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export UMBA_PATH
+
+UMBA_PATH= . src/umba.bash 2>>/dev/null
+if [[ $? -gt 0 ]]; then
+    echo "$0" FAIL \{unset UMBA_PATH should not have failed\}
+    exit 1;
+fi
+
+UMBA_PATH=/dev/null . src/umba.bash 2>>/dev/null
+if [[ $? -eq 0 ]]; then
+    echo "$0" FAIL \{Non-dir UMBA_PATH variable value should have failed\}
+    exit 1;
+fi
+
+UMBA_PATH=./ . src/umba.bash 2>>/dev/null
+if [[ $? -eq 0 ]]; then
+    echo "$0" FAIL \{Wrong-dir in UMBA_PATH should have failed\}
+    exit 1;
+fi
+
+UMBA_PATH=src/ . src/umba.bash 2>>/dev/null
+if [[ $? -gt 0 ]]; then
+    echo "$0" FAIL \{functions should be available after sourcing\}
+    exit 1;
+fi
+
+echo "$0" PASS

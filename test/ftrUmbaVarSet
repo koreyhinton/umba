@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export UMBA_PATH
+
+. src/umba_var_set.bash 2>>/dev/null
+umba_var_set test value 2>>/dev/null
+filevalue=$(cat "${HOME}/.umba/vars/test")
+if [[ ! "$filevalue" = "value" ]]; then
+    echo "$0" FAIL \{variable set should have worked\}
+    exit 1;
+fi
+
+echo "$0" PASS

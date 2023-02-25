@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for f in test/ftr*
+do
+    if [[ "$f" = "test/ftr" ]]; then
+        continue
+    fi
+    autosave_file=$(echo "$f" | grep "~" | wc -l)
+    if [[ $autosave_file -gt 0 ]]; then
+        continue
+    fi
+    "$f"
+done
