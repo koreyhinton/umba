@@ -13,7 +13,7 @@ fi
 # umba function definition
 
 function umba {
-    # todo: do a light backup load, and notify of ones not backed up
+    # todo: report a quick estimate of how many backups are needed
     return 0
 }
 

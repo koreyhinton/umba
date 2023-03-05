@@ -58,4 +58,6 @@ function umba_do {
         cp "$f" "${backup_folder}/all/${filename_hash}_${ts}" # B_STEP_5
 
     done
+    echo "Needs remote backup. Run umba_do_remote."
+    return 0
 }
